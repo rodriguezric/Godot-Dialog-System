@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://RichTextLabel.gd" type="Script" id=1]
+[ext_resource path="res://DialogBox.gd" type="Script" id=2]
+
+[node name="DialogBox" type="Polygon2D"]
+color = Color( 0, 0, 0, 0.32549 )
+polygon = PoolVector2Array( 96, 544, 96, 384, 928, 384, 928, 544 )
+script = ExtResource( 2 )
+
+[node name="Text" type="RichTextLabel" parent="."]
+margin_left = 128.0
+margin_top = 416.0
+margin_right = 896.0
+margin_bottom = 512.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+[connection signal="set_dialog" from="." to="Text" method="_on_DialogBox_set_dialog"]
+[connection signal="show_page" from="." to="Text" method="_on_DialogBox_show_page"]
+[connection signal="timeout" from="Timer" to="Text" method="_on_Timer_timeout"]
